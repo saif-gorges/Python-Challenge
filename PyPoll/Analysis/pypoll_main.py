@@ -51,13 +51,16 @@ with open(filepath) as file:
     print("---------------------")
     for y in range(len(candidate_list)):
         print(f"{candidate_list[y]}: {percent_votes[y]:.3f}% ({votes_list[y]})")
+        if percent_votes[y] > percent_votes[y-1]:
+            winner = candidate_list[y]
     print("---------------------")
-    print(f"Winner: ")
+    print(f"Winner: {winner}")
     print("---------------------")
 
 
     result1 = [("Election Results",),("---------------------",),("Total Votes: ",total_votes),("---------------------",)]
-    
+    bar = ("---------------------",)
+
 #open output file
 with open(outputfilepath, 'w') as file:
     csvwriter = csv.writer(file)
@@ -68,7 +71,8 @@ with open(outputfilepath, 'w') as file:
         result2 = [(candidate_list[p],),(percent_votes[p],) , (votes_list[p])]
         csvwriter.writerow(result2)
     
-    csvwriter.writerow("---------------------",)
-    result3 = [("Winner :",),(total_votes)]
+    #write same results to text file
+    csvwriter.writerow(bar)
+    result3 = [("Winner :",),(winner)]
     csvwriter.writerow(result3)
-    csvwriter.writerow("---------------------",)
+    csvwriter.writerow(bar)

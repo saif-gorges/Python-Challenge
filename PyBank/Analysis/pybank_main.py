@@ -6,7 +6,7 @@ import csv
 #set filepath 
 filepath = os.path.join("Resource","budget_data.csv")
 print(filepath)
-outputfilepath = os.path.join("Analysis","analysis.txt")
+outputfilepath = os.path.join("Analysis","pybankanalysis.txt")
 
 #open and read file
 with open(filepath) as file: 
