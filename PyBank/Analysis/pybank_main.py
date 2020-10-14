@@ -47,14 +47,11 @@ with open(filepath) as file:
     print(f"Greatest Increase in Profits : ${highest_profit}")
     print(f"Greatest Decrease in Profits : ${lowest_profit}")
 
+result = [("Total Months: ",total_months),("Total: $",total),("Average Change: $",average),("Greatest Increase in Profits : $",highest_profit),("Greatest Decrease in Profits : $",lowest_profit)]
     
 #open output file
-with open(outputfilepath, 'w') as outputfile:
-    csvwriter = csv.writer(outputfile)
+with open(outputfilepath, 'w') as file:
+    csvwriter = csv.writer(file)
 
     #print summary variables in txt file
-    print(f"Total Months: {total_months}")
-    print(f"Total: ${total}")
-    print(f"Average Change: ${average:.2f}")
-    print(f"Greatest Increase in Profits : ${highest_profit}")
-    print(f"Greatest Decrease in Profits : ${lowest_profit}")
+    csvwriter.writerows(result)

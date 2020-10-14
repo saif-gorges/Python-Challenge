@@ -6,7 +6,7 @@ import csv
 #set filepath 
 filepath = os.path.join("Resource","election_data.csv")
 print(filepath)
-outputfilepath = os.path.join("Analysis","analysis.txt")
+outputfilepath = os.path.join("Analysis","pypollanalysis.txt")
 
 #open and read file
 with open(filepath) as file: 
@@ -54,3 +54,21 @@ with open(filepath) as file:
     print("---------------------")
     print(f"Winner: ")
     print("---------------------")
+
+
+    result1 = [("Election Results",),("---------------------",),("Total Votes: ",total_votes),("---------------------",)]
+    
+#open output file
+with open(outputfilepath, 'w') as file:
+    csvwriter = csv.writer(file)
+    
+    #print summary variables in txt file
+    csvwriter.writerows(result1)
+    for p in range(len(candidate_list)):
+        result2 = [(candidate_list[p],),(percent_votes[p],) , (votes_list[p])]
+        csvwriter.writerow(result2)
+    
+    csvwriter.writerow("---------------------",)
+    result3 = [("Winner :",),(total_votes)]
+    csvwriter.writerow(result3)
+    csvwriter.writerow("---------------------",)
